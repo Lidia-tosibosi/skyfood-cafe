@@ -1,0 +1,1038 @@
+
+.app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 15% 15%, #fff0d9 0%, transparent 45%),
+    linear-gradient(145deg, #fdf9f4, #eaf2fc);
+}
+
+.login-card {
+  width: 100%;
+  max-width: 430px;
+  padding: 36px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 20px 65px rgba(32, 68, 112, 0.12);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 25px;
+  font-weight: 800;
+  color: #183b66;
+}
+
+.brand-icon {
+  font-size: 30px;
+  color: #2872c2;
+}
+
+.login-heading {
+  margin: 46px 0 30px;
+}
+
+.eyebrow {
+  color: #3778bb;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+.login-heading h1 {
+  margin: 12px 0;
+  color: #17365c;
+  font-size: clamp(28px, 6vw, 36px);
+  line-height: 1.15;
+}
+
+.login-heading p {
+  color: #718198;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.login-form label {
+  color: #263e5d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.login-form input {
+  width: 100%;
+  padding: 15px 16px;
+  border: 1px solid #dce5ef;
+  border-radius: 13px;
+  background: #f8fafc;
+  color: #17365c;
+  font-size: 15px;
+  outline: none;
+}
+
+.login-form input:focus {
+  border-color: #2b71bc;
+  box-shadow: 0 0 0 3px rgba(43, 113, 188, 0.1);
+}
+
+.login-form button {
+  margin-top: 14px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #286bb7;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(40, 107, 183, 0.2);
+}
+
+.login-form button:hover {
+  background: #1d589c;
+}
+
+.login-footer {
+  margin-top: 36px;
+  text-align: center;
+  font-size: 11px;
+  color: #9aa9ba;
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 16px;
+  }
+
+  .login-card {
+    padding: 28px 22px;
+    border-radius: 22px;
+  }
+
+  .login-heading {
+    margin: 36px 0 26px;
+  }
+}
+
+/* Главный интерфейс кафе */
+
+.cafe-app {
+  min-height: 100vh;
+  min-height: 100dvh;
+  background: linear-gradient(145deg, #fdf9f4, #eaf2fc);
+}
+
+.cafe-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  padding: 20px max(24px, calc((100vw - 1100px) / 2));
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 4px 20px rgba(32, 68, 112, 0.06);
+}
+
+.logout-button {
+  border: 1px solid #dce5ef;
+  border-radius: 12px;
+  padding: 10px 18px;
+  background: white;
+  color: #286bb7;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cafe-content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 42px 24px;
+}
+
+.cafe-welcome h1 {
+  margin: 10px 0;
+  color: #17365c;
+  font-size: clamp(30px, 6vw, 42px);
+}
+
+.cafe-welcome p {
+  color: #718198;
+  font-size: 15px;
+}
+
+.menu-placeholder {
+  margin-top: 32px;
+  padding: 70px 24px;
+  border-radius: 26px;
+  background: white;
+  text-align: center;
+  box-shadow: 0 12px 40px rgba(32, 68, 112, 0.07);
+}
+
+.menu-placeholder-icon {
+  font-size: 54px;
+}
+
+.menu-placeholder h2 {
+  color: #17365c;
+  font-size: 24px;
+}
+
+.menu-placeholder p {
+  color: #718198;
+}
+
+.login-error {
+  margin: 2px 0;
+  color: #c43c46;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+@media (max-width: 480px) {
+  .cafe-header {
+    padding: 16px;
+  }
+
+  .cafe-header .brand {
+    font-size: 21px;
+  }
+
+  .cafe-content {
+    padding: 28px 16px;
+  }
+
+  .menu-placeholder {
+    padding: 54px 20px;
+  }
+}
+
+/* Проверка ваучера */
+
+.voucher-check-card {
+  margin-top: 24px;
+  padding: 28px;
+  border: 1px solid #f0e8dd;
+  border-radius: 24px;
+  background: linear-gradient(135deg, #fff7eb, #ffffff 70%);
+  box-shadow: 0 8px 30px rgba(40, 70, 110, 0.06);
+}
+
+.voucher-check-card h2 {
+  color: #17365c;
+  margin: 12px 0;
+}
+
+.voucher-description {
+  color: #718198;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.voucher-label {
+  display: block;
+  margin: 24px 0 10px;
+  color: #263e5d;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.voucher-input-row {
+  display: flex;
+  gap: 10px;
+}
+
+.voucher-input-row input {
+  flex: 1;
+  min-width: 0;
+  padding: 15px;
+  border: 1px solid #dce5ef;
+  border-radius: 13px;
+  background: white;
+  color: #17365c;
+  font-size: 15px;
+  outline: none;
+}
+
+.voucher-input-row input:focus {
+  border-color: #286bb7;
+}
+
+.voucher-input-row button {
+  padding: 0 20px;
+  border: none;
+  border-radius: 13px;
+  background: #286bb7;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.voucher-alert {
+  margin-top: 16px;
+  padding: 14px;
+  border-radius: 12px;
+  background: #fff0e8;
+  color: #b45332;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.voucher-result {
+  margin-top: 22px;
+  padding: 20px;
+  border: 1px solid #e4ebf4;
+  border-radius: 18px;
+  background: white;
+}
+
+.voucher-result-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 20px;
+  color: #17365c;
+}
+
+.voucher-active {
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: #e7f6ec;
+  color: #27834d;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.voucher-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.voucher-info div {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.voucher-info span {
+  color: #8290a2;
+  font-size: 12px;
+}
+
+.voucher-info strong {
+  color: #17365c;
+  font-size: 14px;
+  overflow-wrap: anywhere;
+}
+
+.identity-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  margin-top: 24px;
+  padding: 16px;
+  border-radius: 13px;
+  background: #f4f8fd;
+  color: #263e5d;
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.identity-check input {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  accent-color: #286bb7;
+}
+
+.confirm-order-button,
+.new-order-button {
+  width: 100%;
+  margin-top: 24px;
+  padding: 17px;
+  border: none;
+  border-radius: 14px;
+  background: #286bb7;
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.confirm-order-button:disabled {
+  background: #c9d4e2;
+  cursor: not-allowed;
+}
+
+.confirm-hint {
+  margin: 12px 0 0;
+  color: #8290a2;
+  font-size: 12px;
+  text-align: center;
+}
+
+/* Успешное оформление */
+
+.success-page {
+  max-width: 650px;
+  margin: 30px auto;
+  text-align: center;
+}
+
+.success-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 76px;
+  margin: 0 auto 22px;
+  border-radius: 50%;
+  background: #e7f6ec;
+  color: #27834d;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.success-page h1 {
+  color: #17365c;
+}
+
+.success-page > p {
+  color: #718198;
+}
+
+.success-receipt {
+  margin-top: 28px;
+  padding: 28px;
+  border-radius: 24px;
+  background: white;
+  text-align: left;
+  box-shadow: 0 8px 30px rgba(40, 70, 110, 0.06);
+}
+
+.receipt-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 10px 0;
+  font-size: 13px;
+}
+
+.receipt-row span {
+  color: #718198;
+}
+
+.receipt-row strong {
+  color: #17365c;
+  text-align: right;
+}
+
+.receipt-divider {
+  height: 1px;
+  margin: 12px 0;
+  background: #e9edf3;
+}
+
+.receipt-total {
+  font-size: 18px;
+  font-weight: 800;
+}
+
+@media (max-width: 480px) {
+  .voucher-check-card,
+  .success-receipt {
+    padding: 18px;
+  }
+
+  .voucher-input-row {
+    flex-direction: column;
+  }
+
+  .voucher-input-row button {
+    padding: 15px;
+  }
+
+  .voucher-info {
+    gap: 14px;
+  }
+}
+
+.cancel-order-button {
+  display: block;
+  margin: 12px 0 24px;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #bc6259;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cancel-order-button:hover {
+  color: #983d35;
+}
+
+/* ===== SkyFood · Warm Cafe Theme ===== */
+
+.cafe-app {
+  background:
+    radial-gradient(
+      circle at 88% 8%,
+      rgba(255, 211, 174, 0.38),
+      transparent 34%
+    ),
+    radial-gradient(
+      circle at 5% 72%,
+      rgba(250, 223, 189, 0.28),
+      transparent 40%
+    ),
+    linear-gradient(180deg, #fffaf4 0%, #fff4e8 100%);
+}
+
+.cafe-header {
+  background: rgba(255, 252, 247, 0.94);
+  border-bottom: 1px solid #f1e4d7;
+  backdrop-filter: blur(16px);
+}
+
+/* Приветственный блок меню */
+
+.menu-hero {
+  background: linear-gradient(
+    115deg,
+    #fff0df 0%,
+    #fff7ed 55%,
+    #ffe8d3 100%
+  );
+  border: 1px solid #f7ddc5;
+  box-shadow: 0 12px 32px rgba(167, 113, 67, 0.08);
+}
+
+.menu-hero h1 {
+  color: #17365c;
+}
+
+.hero-decoration {
+  filter: drop-shadow(0 12px 16px rgba(156, 100, 55, 0.14));
+}
+
+/* Категории */
+
+.category-button {
+  transition: all 0.2s ease;
+}
+
+.category-button:not(.active):hover {
+  background: #fff0df;
+  border-color: #f1d3b6;
+}
+
+/* Карточки блюд */
+
+.product-card {
+  background: #fffdf9;
+  border: 1px solid #f3e8db;
+  box-shadow: 0 8px 24px rgba(111, 76, 43, 0.045);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.product-card:hover {
+  transform: translateY(-3px);
+  border-color: #f0d1b1;
+  box-shadow: 0 14px 30px rgba(111, 76, 43, 0.1);
+}
+
+.product-illustration {
+  background: linear-gradient(
+    145deg,
+    #fff3e4,
+    #fbe3cb
+  );
+  border-radius: 18px;
+}
+
+.product-details h3 {
+  color: #243b55;
+}
+
+/* Корзина и заказ */
+
+.cart-bottom-bar {
+  background: rgba(255, 252, 247, 0.97);
+  border: 1px solid #f0e1d2;
+  box-shadow: 0 10px 35px rgba(106, 72, 41, 0.12);
+}
+
+.order-card {
+  background: #fffdf9;
+  border: 1px solid #f1e6db;
+}
+
+.voucher-check-card {
+  background: linear-gradient(
+    135deg,
+    #fff0df 0%,
+    #fffaf4 45%,
+    #ffffff 100%
+  );
+  border: 1px solid #f4dbc3;
+}
+
+/* Кнопки */
+
+.add-button,
+.confirm-order-button,
+.new-order-button {
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease;
+}
+
+.add-button:not(:disabled):hover,
+.confirm-order-button:not(:disabled):hover,
+.new-order-button:not(:disabled):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 5px 14px rgba(40, 107, 183, 0.2);
+}
+
+.voucher-input-row button:disabled {
+  opacity: 0.65;
+  cursor: wait;
+}
+
+.confirm-order-button:disabled {
+  cursor: not-allowed;
+}
+
+/* На телефоне не используем эффект
+   подпрыгивания при наведении */
+
+@media (hover: none) {
+  .product-card:hover,
+  .add-button:hover,
+  .confirm-order-button:hover,
+  .new-order-button:hover {
+    transform: none;
+  }
+}
+
+/* ===== SkyFood · Balanced Cafe Theme ===== */
+
+.cafe-app {
+  background:
+    radial-gradient(
+      circle at 90% 5%,
+      rgba(255, 215, 180, 0.18),
+      transparent 30%
+    ),
+    #f5f7fa;
+}
+
+/* Белая шапка */
+.cafe-header {
+  background: rgba(255, 255, 255, 0.97);
+  border-bottom: 1px solid #e5eaf0;
+}
+
+/* Единственный крупный тёплый акцент */
+.menu-hero {
+  background: linear-gradient(
+    110deg,
+    #ffead4 0%,
+    #fff3e6 58%,
+    #ffe1c5 100%
+  );
+  border: 1px solid #f0d7bd;
+  box-shadow: 0 8px 24px rgba(143, 105, 70, 0.08);
+}
+
+/* Карточки меню — белые, отделены от фона */
+.product-card {
+  background: #ffffff;
+  border: 1px solid #e5e9ef;
+  box-shadow: 0 5px 18px rgba(33, 54, 85, 0.06);
+}
+
+.product-card:hover {
+  border-color: #eabf9b;
+  box-shadow: 0 10px 26px rgba(33, 54, 85, 0.1);
+}
+
+/* Тепло только внутри иллюстраций еды */
+.product-illustration {
+  background: #fff0e2;
+}
+
+/* Категории */
+.category-button {
+  background: #ffffff;
+  border: 1px solid #e0e6ed;
+}
+
+.category-button:not(.active):hover {
+  background: #fff1e5;
+  border-color: #edc7a8;
+}
+
+/* Контрастная корзина */
+.cart-bottom-bar {
+  background: #ffffff;
+  border: 1px solid #e4e8ee;
+  box-shadow: 0 10px 32px rgba(33, 54, 85, 0.12);
+}
+
+/* Экран заказа */
+.order-card {
+  background: #ffffff;
+  border: 1px solid #e2e7ee;
+  box-shadow: 0 5px 20px rgba(33, 54, 85, 0.05);
+}
+
+/* Блок проверки ваучера */
+.voucher-check-card {
+  background: #ffffff;
+  border: 1px solid #e2e7ee;
+  box-shadow: 0 5px 20px rgba(33, 54, 85, 0.05);
+}
+
+/* Внутри блока ваучера — лёгкий тёплый акцент */
+.voucher-result {
+  background: #fffaf5;
+  border: 1px solid #f0e2d3;
+}
+
+/* Чек */
+.success-receipt {
+  background: #ffffff;
+  border: 1px solid #e2e7ee;
+}
+
+/* Сообщения об ошибках оформления */
+
+.voucher-alert {
+  border: 1px solid #f1c8ba;
+  border-left: 4px solid #d77b5d;
+  background: #fff5f0;
+  color: #914b38;
+  border-radius: 12px;
+  padding: 15px 18px;
+  line-height: 1.6;
+  font-size: 13px;
+}
+
+/* Акцент на полях ввода */
+
+.voucher-input-row input:focus {
+  border-color: #d5a47f;
+  box-shadow: 0 0 0 3px rgba(213, 164, 127, 0.14);
+}
+
+/* Блок результата проверки */
+
+.voucher-result {
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(34, 49, 70, 0.04);
+}
+
+/* ===== SkyFood · Final UI Improvements ===== */
+
+/* Мобильная корзина */
+
+.cart-bottom-bar {
+  box-sizing: border-box;
+  max-width: calc(100% - 24px);
+}
+
+.cafe-content {
+  padding-bottom: 110px;
+}
+
+/* Панель управления заказом */
+
+.order-navigation {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.order-navigation .back-button,
+.order-navigation .cancel-order-button {
+  display: inline-flex;
+  align-items: center;
+  margin: 0;
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.order-navigation .back-button {
+  color: #286bb7;
+}
+
+.order-navigation .cancel-order-button {
+  color: #bc6259;
+}
+
+.order-navigation button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Карточка пассажира */
+
+.voucher-result {
+  background: #ffffff;
+  padding: 22px;
+  border: 1px solid #e5e9ef;
+  border-radius: 20px;
+}
+
+.voucher-result-heading {
+  margin-bottom: 22px;
+}
+
+.voucher-active {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.status-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #2a9c60;
+}
+
+/* ФИО и данные рейса */
+
+.passenger-primary {
+  padding-bottom: 22px;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.passenger-caption {
+  color: #8a98a8;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
+
+.passenger-primary h3 {
+  margin: 9px 0 14px;
+  color: #17365c;
+  font-size: clamp(19px, 3vw, 24px);
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+
+.flight-details {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.flight-details span {
+  padding: 7px 11px;
+  border-radius: 9px;
+  background: #f2f5f9;
+  color: #50657e;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Остаток ваучера */
+
+.voucher-balance-panel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 24px 0;
+  border-bottom: 1px solid #e9edf2;
+}
+
+.voucher-balance-panel > div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.balance-caption,
+.period-amount {
+  color: #8190a2;
+  font-size: 12px;
+}
+
+.balance-value {
+  color: #17365c;
+  font-size: clamp(27px, 5vw, 34px);
+  line-height: 1.2;
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.voucher-type {
+  flex-shrink: 0;
+  padding: 10px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+}
+
+.voucher-type-meal {
+  background: #fff0df;
+  color: #a45b28;
+}
+
+.voucher-type-water {
+  background: #e8f3ff;
+  color: #286bb7;
+}
+
+/* Напоминание о проверке документа */
+
+.document-reminder {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 20px;
+  padding: 14px 16px;
+  border-radius: 12px;
+  background: #f4f7fb;
+  color: #60758e;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.document-icon {
+  color: #286bb7;
+  font-size: 18px;
+}
+
+.identity-check {
+  margin-top: 12px;
+}
+
+/* Акцент в чеке */
+
+.receipt-highlight {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 24px;
+  padding: 26px 18px;
+  border: 1px solid #e4eadf;
+  border-radius: 18px;
+  background: linear-gradient(
+    135deg,
+    #f4f9f2,
+    #fffaf2
+  );
+  text-align: center;
+}
+
+.receipt-highlight > span:first-child {
+  color: #677d71;
+  font-size: 13px;
+}
+
+.receipt-highlight strong {
+  color: #17365c;
+  font-size: clamp(30px, 5vw, 38px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+}
+
+.receipt-balance-label {
+  color: #34815b;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Индикаторы загрузки */
+
+.loading-label {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+.button-spinner {
+  width: 15px;
+  height: 15px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: #ffffff;
+  border-radius: 50%;
+  animation: skyfood-spin 0.75s linear infinite;
+}
+
+@keyframes skyfood-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .button-spinner {
+    animation: none;
+    border-color: #ffffff;
+  }
+}
+
+/* Адаптация под телефон */
+
+@media (max-width: 600px) {
+  .cafe-content {
+    padding-bottom: calc(115px + env(safe-area-inset-bottom));
+  }
+
+  .cart-bottom-bar {
+    gap: 12px;
+  }
+
+  .order-navigation {
+    margin-bottom: 18px;
+  }
+
+  .voucher-result {
+    padding: 16px;
+  }
+
+  .voucher-balance-panel {
+    gap: 10px;
+  }
+
+  .voucher-type {
+    padding: 9px 11px;
+  }
+
+  .success-receipt {
+    padding: 18px;
+  }
+}

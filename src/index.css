@@ -1,0 +1,384 @@
+
+:root {
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+
+/* SkyFood Cafe — тёплый интерфейс */
+
+.cafe-app {
+  background:
+    radial-gradient(ellipse at 5% 0%, #fff0db 0%, transparent 45%),
+    linear-gradient(145deg, #fffaf4, #edf3fb);
+}
+
+.cafe-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  backdrop-filter: blur(14px);
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cafe-label {
+  color: #17365c;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.menu-hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 34px;
+  border-radius: 28px;
+  background: linear-gradient(110deg, #fff0db, #fff9f0 60%, #eaf3ff);
+  overflow: hidden;
+}
+
+.menu-hero h1 {
+  margin: 12px 0;
+  color: #17365c;
+  font-size: clamp(28px, 5vw, 42px);
+}
+
+.menu-hero p {
+  color: #718198;
+  line-height: 1.6;
+}
+
+.hero-decoration {
+  font-size: 100px;
+  filter: drop-shadow(0 12px 15px rgba(90, 60, 30, 0.12));
+}
+
+.category-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding: 24px 0;
+  scrollbar-width: none;
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+
+.category-button {
+  flex-shrink: 0;
+  padding: 12px 20px;
+  border: 1px solid #e2e8f0;
+  border-radius: 30px;
+  background: white;
+  color: #61738a;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.category-button.active {
+  border-color: #286bb7;
+  background: #286bb7;
+  color: white;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+  padding-bottom: 110px;
+}
+
+.product-card {
+  display: flex;
+  gap: 18px;
+  padding: 18px;
+  border: 1px solid #f1eee9;
+  border-radius: 22px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(40, 70, 110, 0.05);
+}
+
+.product-illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 100px;
+  height: 110px;
+  border-radius: 16px;
+  background: linear-gradient(145deg, #fff1de, #f9e6d0);
+  font-size: 48px;
+}
+
+.product-details {
+  display: flex;
+  flex: 1;
+  min-width: 0;
+  flex-direction: column;
+}
+
+.product-details h3 {
+  margin: 2px 0 7px;
+  color: #17365c;
+  font-size: 16px;
+}
+
+.product-details p {
+  margin: 0 0 16px;
+  color: #8290a2;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.product-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.product-bottom strong {
+  color: #17365c;
+  white-space: nowrap;
+}
+
+.add-button {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 11px;
+  background: #e9f2ff;
+  color: #286bb7;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.quantity-control button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 10px;
+  background: #e9f2ff;
+  color: #286bb7;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.quantity-control span {
+  font-weight: 700;
+  color: #17365c;
+}
+
+.cart-bottom-bar {
+  position: fixed;
+  bottom: 16px;
+  left: 50%;
+  z-index: 30;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  width: min(94%, 650px);
+  padding: 14px 16px 14px 22px;
+  transform: translateX(-50%);
+  border: 1px solid #e4ebf4;
+  border-radius: 20px;
+  background: white;
+  box-shadow: 0 12px 45px rgba(23, 54, 92, 0.18);
+}
+
+.cart-bottom-bar div {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cart-bottom-bar span {
+  color: #8290a2;
+  font-size: 12px;
+}
+
+.cart-bottom-bar strong {
+  color: #17365c;
+  font-size: 19px;
+}
+
+.cart-bottom-bar button {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 13px;
+  background: #286bb7;
+  color: white;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* Экран заказа */
+
+.order-page h1 {
+  color: #17365c;
+}
+
+.order-subtitle {
+  color: #8290a2;
+}
+
+.back-button {
+  padding: 10px 0;
+  border: none;
+  background: transparent;
+  color: #286bb7;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.order-card,
+.voucher-placeholder {
+  margin-top: 24px;
+  padding: 26px;
+  border-radius: 24px;
+  background: white;
+  box-shadow: 0 8px 30px rgba(40, 70, 110, 0.06);
+}
+
+.order-item {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 0;
+  border-bottom: 1px solid #edf0f5;
+}
+
+.order-item strong {
+  color: #17365c;
+}
+
+.order-item p {
+  color: #8290a2;
+  font-size: 13px;
+}
+
+.order-item-right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.order-total {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 24px;
+  color: #17365c;
+  font-size: 21px;
+  font-weight: 800;
+}
+
+.voucher-placeholder {
+  background: linear-gradient(130deg, #fff8ef, #ffffff);
+}
+
+.voucher-placeholder h2 {
+  color: #17365c;
+}
+
+.voucher-placeholder p {
+  color: #718198;
+  line-height: 1.6;
+}
+
+.confirm-disabled {
+  width: 100%;
+  margin-top: 20px;
+  padding: 16px;
+  border: none;
+  border-radius: 14px;
+  background: #c9d4e2;
+  color: white;
+  font-weight: 700;
+  cursor: not-allowed;
+}
+
+@media (max-width: 700px) {
+  .cafe-content {
+    padding: 18px 16px;
+  }
+
+  .menu-hero {
+    padding: 26px 20px;
+  }
+
+  .hero-decoration {
+    font-size: 60px;
+  }
+
+  .products-grid {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .product-card {
+    padding: 13px;
+    gap: 14px;
+  }
+
+  .product-illustration {
+    width: 90px;
+    height: 100px;
+    font-size: 40px;
+  }
+
+  .cafe-label {
+    display: none;
+  }
+
+  .order-card,
+  .voucher-placeholder {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 380px) {
+  .hero-decoration {
+    display: none;
+  }
+
+  .product-illustration {
+    width: 72px;
+    height: 90px;
+  }
+
+  .product-bottom {
+    flex-wrap: wrap;
+  }
+}
