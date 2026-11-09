@@ -1,18 +1,52 @@
 import './App.css';
-import { mockMenu } from './data/mockMenu';
+import { getCafeMenu } from './api/cafeMenuApi';
 import {
   getVoucherByBoardingCode,
   createOrder,
 } from './api/skyfoodApi';
 import { useEffect, useRef, useState } from 'react';
-const MOCK_EMPLOYEE = {
-  username: 'admin',
-  password: '1234',
-  cafe: {
-    id: 1,
-    name: 'SkyCoffee',
+
+const MOCK_EMPLOYEES = {
+  cafe1_employee: {
+    password: '1234',
+    cafe: { id: 1, name: 'АэроКафе' }
   },
+  cafe2_employee: {
+    password: '1234',
+    cafe: { id: 2, name: 'Coffee Point' }
+  },
+  cafe3_employee: {
+    password: '1234',
+    cafe: { id: 3, name: 'Terminal Bistro' }
+  },
+  cafe4_employee: {
+    password: '1234',
+    cafe: { id: 4, name: 'Волга Кафе' }
+  },
+
+cafe5_employee: {
+  password: '1234',
+  cafe: { id: 5, name: 'Coffee House' }
+},
+cafe6_employee: {
+  password: '1234',
+  cafe: { id: 6, name: 'Airport Food' }
+},
+cafe7_employee: {
+  password: '1234',
+  cafe: { id: 7, name: 'Пулково Кафе' }
+},
+cafe8_employee: {
+  password: '1234',
+  cafe: { id: 8, name: 'Coffee Point' }
+},
+cafe9_employee: {
+  password: '1234',
+  cafe: { id: 9, name: 'Terminal Bistro' }
+}
+
 };
+
 
 function App() {
   const [username, setUsername] = useState('');
@@ -34,32 +68,75 @@ function App() {
   const [identityConfirmed, setIdentityConfirmed] = useState(false);
   const [completedOrder, setCompletedOrder] = useState(null);
   const orderSubmittingRef = useRef(false);
+  const paymentKeyRef = useRef(null);
   const [voucherLoading, setVoucherLoading] = useState(false);
   const [orderLoading, setOrderLoading] = useState(false);
+const [menu, setMenu] = useState([]);
+const [menuLoading, setMenuLoading] = useState(false);
+const [menuError, setMenuError] = useState('');
 
-  function handleLogin(event) {
-    event.preventDefault();
-    setError('');
 
-    if (!username.trim() || !password.trim()) {
-      setError('Заполните логин и пароль');
-      return;
+const cafeId = employee?.cafe?.id;
+
+useEffect(() => {
+  if (!cafeId) return;
+
+  let cancelled = false;
+
+  setMenuLoading(true);
+  setMenuError('');
+  setMenu([]);
+  setCart([]);
+  setCategory('Все');
+
+  async function loadMenu() {
+    try {
+      const items = await getCafeMenu(cafeId);
+
+      if (!cancelled) {
+        setMenu(items);
+      }
+    } catch (error) {
+      if (!cancelled) {
+        setMenuError(error.message);
+      }
+    } finally {
+      if (!cancelled) {
+        setMenuLoading(false);
+      }
     }
-
-    if (
-      username !== MOCK_EMPLOYEE.username ||
-      password !== MOCK_EMPLOYEE.password
-    ) {
-      setError('Неверный логин или пароль');
-      return;
-    }
-
-    setEmployee({
-      username: MOCK_EMPLOYEE.username,
-      cafe: MOCK_EMPLOYEE.cafe,
-    });
-    setPassword('');
   }
+
+  loadMenu();
+
+  return () => {
+    cancelled = true;
+  };
+}, [cafeId]);
+
+
+
+
+function handleLogin(event) {
+  event.preventDefault();
+  setError('');
+
+  const login = username.trim();
+  const account = MOCK_EMPLOYEES[login];
+
+  if (!account || password !== account.password) {
+    setError('Неверный логин или пароль');
+    return;
+  }
+
+  setEmployee({
+    username: login,
+    cafe: account.cafe
+  });
+
+  setPassword('');
+}
+
 
   function handleLogout() {
     if (orderSubmittingRef.current) return;
@@ -78,11 +155,11 @@ function App() {
   }
 
 
-  const categories = ['Все', ...new Set(mockMenu.map(item => item.category))];
+const categories = ['Все', ...new Set(menu.map(item => item.category))];
 
-  const filteredMenu = category === 'Все'
-    ? mockMenu
-    : mockMenu.filter(item => item.category === category);
+const filteredMenu = category === 'Все'
+  ? menu
+  : menu.filter(item => item.category === category);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
@@ -182,12 +259,17 @@ const currentBalance = voucher?.balance ?? 0;
     ? cartTotal > currentBalance
     : false;
 
-  const canConfirmOrder =
-    voucher !== null &&
-    identityConfirmed &&
-    cart.length > 0 &&
-    !hasForbiddenItems &&
-    !insufficientBalance;
+
+const canConfirmOrder =
+  voucher !== null &&
+  identityConfirmed &&
+  cart.length > 0 &&
+  !hasForbiddenItems &&
+  !insufficientBalance &&
+  !orderLoading &&
+  !voucherLoading;
+
+
 
 
 async function confirmOrder() {
@@ -203,31 +285,52 @@ async function confirmOrder() {
   setOrderLoading(true);
   setVoucherError('');
 
+  // Один ключ для первоначального запроса и повторных попыток.
+  const paymentKey =
+    paymentKeyRef.current ?? crypto.randomUUID();
+
+  paymentKeyRef.current = paymentKey;
+
   try {
     const result = await createOrder({
       boardingPassCode: voucher.boardingPassCode,
+      cafeId: employee.cafe.id,
+      employeeUsername: employee.username,
+      idempotencyKey: paymentKey,
       items: cart.map(item => ({
-        id: item.id,
-        quantity: item.quantity,
-      })),
-requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,    });
+        itemId: item.id,
+        quantity: item.quantity
+      }))
+    });
 
-    setCompletedOrder(result);
+    setCompletedOrder({
+      number: result.orderNumber,
+      passengerName: voucher.passengerName,
+      items: cart.map(item => ({ ...item })),
+      total: Number(result.total),
+      currency: result.currency,
+      balanceAfter: Number(result.balanceAfter),
+      confirmedAt: new Date().toLocaleString('ru-RU')
+    });
+
+    paymentKeyRef.current = null;
     setScreen('success');
-  
-} catch (error) {
-  setVoucherError(
-    error.message || 'Не удалось оформить заказ. Проверьте статус операции.'
-  );
 
-  setVoucher(null);
-  setIdentityConfirmed(false);
+  } catch (error) {
+    setVoucherError(
+      error.message ||
+      'Не удалось определить результат оплаты'
+    );
+
+    // Не сбрасываем ключ, чтобы повторная попытка
+    // не привела к повторному списанию.
 
   } finally {
     orderSubmittingRef.current = false;
     setOrderLoading(false);
   }
 }
+
 
   function startNewOrder() {
     if (orderSubmittingRef.current) return;
@@ -237,6 +340,7 @@ requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,    });
     resetVoucherCheck();
     setCompletedOrder(null);
     setScreen('menu');
+    paymentKeyRef.current = null;
   }
 
 
@@ -281,7 +385,7 @@ requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,    });
               <section className="menu-hero">
                 <div>
                   <span className="eyebrow">SKYFOOD · CAFE</span>
-                  <h1>Меню SkyCoffee ☕</h1>
+                  <h1>Меню {employee.cafe.name} ☕</h1>
                   <p>
                     Соберите заказ для пассажира.
                     Ваучер проверим перед оформлением.
@@ -301,6 +405,20 @@ requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,    });
                   </button>
                 ))}
               </div>
+
+
+{menuLoading && (
+  <p role="status">Загружаем меню кафе...</p>
+)}
+
+{menuError && (
+  <p role="alert">{menuError}</p>
+)}
+
+{!menuLoading && !menuError && menu.length === 0 && (
+  <p>В этом кафе пока нет доступных товаров.</p>
+)}
+
 
               <section className="products-grid">
                 {filteredMenu.map(product => {
@@ -468,10 +586,11 @@ requestId: `${Date.now()}-${Math.random().toString(36).slice(2)}`,    });
       <span className="passenger-caption">ПАССАЖИР</span>
       <h3>{voucher.passengerName}</h3>
 
-      <div className="flight-details">
-        <span>✈ Рейс {voucher.flightNumber}</span>
-        <span>Место {voucher.seatNumber || 'не указано'}</span>
-      </div>
+
+<div className="flight-details">
+  <span>Посадочный талон: {voucher.boardingPassCode}</span>
+</div>
+
     </div>
 
     <div className="voucher-balance-panel">
